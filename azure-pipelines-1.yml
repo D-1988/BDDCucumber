@@ -1,0 +1,28 @@
+trigger:
+- master
+pool:
+  vmImage: ubuntu-latest
+steps:
+- task: Maven@4
+  inputs:
+    mavenPomFile: 'Cucumber-BDD-Automation-Framework-master/pom.xml'
+    goals: 'clean test'
+    options: '-Dsurefire.suiteXmlFiles=testng.xml'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
+
+- script: |
+    echo "Running tests..."
+    # Your test command that generates Extent Report
+  displayName: 'Run Tests'
+
+- task: PublishAllureReport@1
+  inputs:
+    testResultsDir: 'RestAssuredAutomationFramework-master/target/surefire-reports'
+    reportName: 'index.html'
+
