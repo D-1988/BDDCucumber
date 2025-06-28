@@ -7,7 +7,7 @@ steps:
   inputs:
     mavenPomFile: 'Cucumber-BDD-Automation-Framework-master/pom.xml'
     goals: 'clean test'
-    options: '-Dsurefire.suiteXmlFiles=testng.xml'
+    options: '-Dsurefire.suiteXmlFiles=testNg.xml'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
